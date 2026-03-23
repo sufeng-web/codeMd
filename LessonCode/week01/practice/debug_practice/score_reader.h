@@ -3,7 +3,7 @@
 
 class ScoreReader {
 public:
-    static const int maxCounts = 5;
+    static const int s_maxCounts = 5;
 
     ScoreReader();
 
@@ -12,8 +12,8 @@ public:
     const int* getScores() const;
 
 private:
-    int scores_[maxCounts];
-    int count_;
+    int m_scores[s_maxCounts];
+    int m_count;
 };
 
 #endif

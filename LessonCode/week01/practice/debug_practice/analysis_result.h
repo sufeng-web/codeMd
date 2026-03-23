@@ -2,10 +2,10 @@
 #define ANALYSIS_RESULT_H
 
 struct AnalysisResult {
-    int total;
-    double average;
-    int passCount;
-    int maxScore;
+    int Total;
+    double Average;
+    int PassCount;
+    int MaxScore;
 };
 
 #endif

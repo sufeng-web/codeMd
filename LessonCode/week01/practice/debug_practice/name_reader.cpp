@@ -8,8 +8,8 @@ NameReader::NameReader() {
 
 bool NameReader::readName() {
     std::cout << "Enter student name: ";
-    char temp[kNameCapacity];
-    if (!std::cin.getline(temp, kNameCapacity)) {
+    char temp[s_nameCapacity];
+    if (!std::cin.getline(temp, s_nameCapacity)) {
         return false;
     }
     std::size_t len = std::strlen(temp);

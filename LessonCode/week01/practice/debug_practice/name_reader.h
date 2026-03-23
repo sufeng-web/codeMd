@@ -3,14 +3,14 @@
 
 class NameReader {
 public:
-    static const int kNameCapacity = 64;
+    static const int s_nameCapacity = 64;
 
     NameReader();
     bool readName();
     const char* getName() const { return m_name; }
 
 private:
-    char m_name[kNameCapacity];
+    char m_name[s_nameCapacity];
 };
 
 #endif

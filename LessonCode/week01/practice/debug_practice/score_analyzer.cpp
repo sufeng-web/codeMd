@@ -23,7 +23,7 @@ int main() {
         std::cout << "Invalid name input.\n";
         return 1;
     }
-    setGlobalStudentName(nameReader.getName());
+    SetGlobalStudentName(nameReader.getName());
 
     ScoreReader reader;
     if (!reader.readInput()) {
@@ -31,7 +31,7 @@ int main() {
         return 1;
     }
 
-    setGlobalCourseCount(g_courseCount);
+    SetGlobalCourseCount(g_courseCount);
 
     Statistics stats;
     AnalysisResult result = stats.compute(reader.getScores(), reader.getCount());
