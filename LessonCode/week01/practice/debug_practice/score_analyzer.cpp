@@ -38,6 +38,6 @@ int main() {
 
     Report report;
     report.print(result);
-
+    system("pause");
     return 0;
 }
