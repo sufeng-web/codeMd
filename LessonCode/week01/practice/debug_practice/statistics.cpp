@@ -5,17 +5,17 @@ AnalysisResult Statistics::compute(const int scores[], int count) const {
     AnalysisResult result = { 0, 0.0, 0, 0 };
 
     for (int i = 0; i < count; ++i) {
-        result.Total += scores[i];
+        result.total += scores[i];
     }
 
-    result.Average = static_cast<double>(result.Total) / count;
+    result.average = static_cast<double>(result.total) / count;
 
     int passCount = 0;
     for (int i = 0; i < count; ++i) {
         if (scores[i] >= PASS_THRESHOLD)
             passCount++;
     }
-    result.PassCount = passCount;
+    result.passCount = passCount;
 
     int maxVal = 0;
     for (int i = 0; i < count; ++i) {
@@ -23,7 +23,7 @@ AnalysisResult Statistics::compute(const int scores[], int count) const {
             maxVal = scores[i];
         }
     }
-    result.MaxScore = maxVal;
+    result.maxScore = maxVal;
 
     return result;
 }

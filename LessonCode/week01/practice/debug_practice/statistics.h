@@ -1,5 +1,5 @@
-#ifndef STATISTICS_H
-#define STATISTICS_H
+#ifndef __DEBUG_PRACTICE_STATISTICS_H__
+#define __DEBUG_PRACTICE_STATISTICS_H__
 
 #include "analysis_result.h"
 

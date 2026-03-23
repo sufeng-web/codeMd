@@ -1,5 +1,5 @@
-#ifndef GLOBALS_H
-#define GLOBALS_H
+#ifndef __DEBUG_PRACTICE_GLOBALS_H__
+#define __DEBUG_PRACTICE_GLOBALS_H__
 
 // Constants (used for thresholds and labels)
 extern const int PASS_THRESHOLD;

@@ -1,11 +1,11 @@
-#ifndef ANALYSIS_RESULT_H
-#define ANALYSIS_RESULT_H
+#ifndef __DEBUG_PRACTICE_ANALYSIS_RESULT_H__  //
+#define __DEBUG_PRACTICE_ANALYSIS_RESULT_H__
 
 struct AnalysisResult {
-    int Total;
-    double Average;
-    int PassCount;
-    int MaxScore;
+    int total;
+    double average;
+    int passCount;
+    int maxScore;
 };
 
 #endif

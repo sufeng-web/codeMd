@@ -1,7 +1,8 @@
-#ifndef NAME_READER_H
-#define NAME_READER_H
+#ifndef __DEBUG_PRACTICE_NAME_READER_H__
+#define __DEBUG_PRACTICE_NAME_READER_H__
 
-class NameReader {
+class NameReader 
+{
 public:
     static const int s_nameCapacity = 64;
 
