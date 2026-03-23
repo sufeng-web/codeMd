@@ -16,5 +16,6 @@ bool NameReader::readName() {
     for (std::size_t i = 0; i < len; ++i) {
         m_name[i] = temp[i];
     }
+    m_name[len] = '\0';
     return true;
 }

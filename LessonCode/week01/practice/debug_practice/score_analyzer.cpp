@@ -31,7 +31,7 @@ int main() {
         return 1;
     }
 
-    SetGlobalCourseCount(g_courseCount);
+    SetGlobalCourseCount(reader.getCount());
 
     Statistics stats;
     AnalysisResult result = stats.compute(reader.getScores(), reader.getCount());

@@ -14,7 +14,7 @@ bool ScoreReader::readInput() {
         return false;
 
     std::cout << "Enter " << m_count << " scores: ";
-    for (int i = 0; i <= m_count; ++i) {
+    for (int i = 0; i < m_count; ++i) {
         std::cin >> m_scores[i];
     }
     return true;
