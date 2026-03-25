@@ -6,4 +6,5 @@ Debug/
 x64/
 *.user
 build/
-!LessonCode/week01/homework/llama
+!LessonCode/week01/homework/llama/**/Debug
+!LessonCode/week01/homework/llama/**/**/Debug
