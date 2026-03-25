@@ -1,11 +1,39 @@
-此目录存放本周课后作业，可以在此文件添加作业题目、设计思路和流程图等
+powershell -Command "Set-Content -Path 'README_summary.md' -Value '
 
-powershell -Command "Set-Content -Path 'README_summary.md' -Value '# 本地 LLM 在 CPU 环境下的性能与准确率测试总结
+#本地 LLM 在 CPU 环境下的性能与准确率测试总结
 
-## 1. 项目背景
+## 1. 项目产出文件说明
+
+| 文件名 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| **build.bat** | **执行脚本** | **双击此文件即可一键完成环境安装与所有测试** |
+| `performance_benchmark.py` | 源码 | 测速脚本（读取 text.xlsx，计算 TTFT, TPS） |
+| `accuracy_test_fast.py` | 源码 | 准确率脚本（调用 API，计算 F1, Recall） |
+| `performance_report.csv` | 产出 | 性能测试的详细原始数据 |
+| `performance_charts.png` | 产出 | 性能分布图表（可视化 TPS 波动） |
+| `test_results_fast.xlsx` | 产出 | 每一条数据的预测结果对比表 |
+| `accuracy_metrics.csv` | 产出 | **最终四大指标（准确率、精确率、召回率、F1）** |
+| `error_cases_fast.xlsx` | 产出 | 专门记录模型判断错误的案例，便于分析 |
+||||
+
+## 文件说明：
+
+目录：code data  llama text
+
+code里面存放测试模型性能的源代码   
+
+data：正面样例100个  反 面样例100个
+
+result：对千问模型跑出来 的测评结果
+
+build.bat: 一键 构建llama框架编译，把相应的模型放入到\llama\models 里面，即可在命令行运行。
+
+
+
+## 2. 项目背景
 本项目旨在 CPU 环境下（使用 `llama.cpp` / `llama-server.exe`）测试量化模型（Qwen2.5-1.5B-Instruct-int4）在处理中文短文本逻辑判断任务时的性能与准确率。
 
-## 2. 遇到的问题与解决方案
+## 3. 遇到的问题与解决方案
 
 ### 问题一：性能图表横纵坐标不合理
 - **现象**：初版性能测试生成的图表横坐标（Input Length）都在 500~3000 字符，且需要很长时间运行。
@@ -35,18 +63,4 @@ powershell -Command "Set-Content -Path 'README_summary.md' -Value '# 本地 LLM 
   - **功能 2**：按顺序执行性能测试和准确率测试。
   - **功能 3**：测试完成后自动生成所有报表并暂停展示结果。
 
----
 
-## 3. 项目产出文件说明
-
-| 文件名 | 类型 | 说明 |
-| :--- | :--- | :--- |
-| **build.bat** | **执行脚本** | **双击此文件即可一键完成环境安装与所有测试** |
-| `performance_benchmark.py` | 源码 | 测速脚本（读取 text.xlsx，计算 TTFT, TPS） |
-| `accuracy_test_fast.py` | 源码 | 准确率脚本（调用 API，计算 F1, Recall） |
-| `performance_report.csv` | 产出 | 性能测试的详细原始数据 |
-| `performance_charts.png` | 产出 | 性能分布图表（可视化 TPS 波动） |
-| `test_results_fast.xlsx` | 产出 | 每一条数据的预测结果对比表 |
-| `accuracy_metrics.csv` | 产出 | **最终四大指标（准确率、精确率、召回率、F1）** |
-| `error_cases_fast.xlsx` | 产出 | 专门记录模型判断错误的案例，便于分析 |
-' -Encoding UTF8"
