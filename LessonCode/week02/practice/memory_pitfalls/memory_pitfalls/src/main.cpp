@@ -243,5 +243,6 @@ int main(int argc, char* argv[]) {
     runFinalExport(loader);
 
     delete nameView;
+    system("pause");
     return 0;
 }
