@@ -4,33 +4,33 @@
 
 断点设置：在创建内存池 分配内存  释放内存 分别设计断点
 
-![image-20260330163320171](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260330163320171.png)
+![image-20260330163320171](.\res\1.png)
 
 添加监视器：
 
-![image-20260330163506990](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260330163506990.png)
+![image-20260330163506990](.\res\2.png)
 
 第一个断点：
 
-![image-20260330164512352](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260330164512352.png)
+![image-20260330164512352](.\res\3.png)
 
 数组的开始地址，指针的指向数组地址。
 
 随机分配第一个数组的内存出去，指针指向第二数组元素。
 
-![image-20260330164613341](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260330164613341.png)
+![image-20260330164613341](.\res\4.png)
 
 内存池中只有3个块可以分配，当第四个想申请的时候，申请失败。地址显示NULL
 
-![image-20260330164806374](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260330164806374.png)
+![image-20260330164806374](.\res\5.png)
 
 释放一个内存，类中的free指针 指向释放的地址
 
-![image-20260330164936672](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260330164936672.png)
+![image-20260330164936672](.\res\6.png)
 
 b5成功申请，free指针 又变为NULL。代表 此时内存池中没有内存可以分配了
 
-![image-20260330165008094](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20260330165008094.png)
+![image-20260330165008094](.\res\7.png)
 
 此时我们看到 
 
