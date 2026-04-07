@@ -101,7 +101,7 @@ struct Enemy {
 volatile int g_sink = 0;
 
 
-// 模拟“不断生成和销毁”
+// 模拟  不断生成和销毁
 // 设计：循环 frames 次，每帧生成 spawn 次对象，然后销毁 destroy 次对象。
 struct SimConfig {
     int frames = 100;          // 模拟 100 帧
@@ -165,7 +165,7 @@ static void benchmarkNormal(const SimConfig& cfg) {
 // Pool: 两个池
 static void benchmarkPool(const SimConfig& cfg) {
     // 估算“峰值在场数量”用于池容量
-    // 如果 spawn==destroy，每帧不会累积，那么容量可以等于每帧最大并发数量
+    // spawn==destroy，每帧不会累积，那么容量可以等于每帧最大并发数量
     const std::size_t bulletCap = static_cast<std::size_t>(cfg.frames) * cfg.spawnBullets;
     const std::size_t enemyCap = static_cast<std::size_t>(cfg.frames) * cfg.spawnEnemies;
 
