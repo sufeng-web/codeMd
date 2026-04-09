@@ -1,0 +1,6 @@
+message("LessCode/week04/practice")
+add_subdirectory(commandPatter)
+add_subdirectory(factoryPatter1)
+add_subdirectory(factoryPatter2)
+add_subdirectory(factoryPatter3)
+add_subdirectory(observePatter)

@@ -80,7 +80,7 @@ static std::size_t getPeakWorkingSetBytes() {
 }
 
 
-// Á½ÀàÓÎÏ·¶ÔÏó
+//       Ï·    
 struct Bullet {
     float x, y;
     float vx, vy;
@@ -97,22 +97,22 @@ struct Enemy {
     void hit(float d) { hp -= d; }
 };
 
-// ·ÀÖ¹±àÒëÆ÷ÓÅ»¯µô
+//   Ö¹       Å»   
 volatile int g_sink = 0;
 
 
-// Ä£Äâ  ²»¶ÏÉú³ÉºÍÏú»Ù
-// Éè¼Æ£ºÑ­»· frames ´Î£¬Ã¿Ö¡Éú³É spawn ´Î¶ÔÏó£¬È»ºóÏú»Ù destroy ´Î¶ÔÏó¡£
+// Ä£           Éº     
+//   Æ£ Ñ­   frames  Î£ Ã¿Ö¡     spawn  Î¶   È»       destroy  Î¶   
 struct SimConfig {
-    int frames = 100;          // Ä£Äâ 100 Ö¡
-    int spawnBullets = 100;    // Ã¿Ö¡Éú³É 100 ×Óµ¯
-    int spawnEnemies = 10;     // Ã¿Ö¡Éú³É 10 µÐÈË
-    int destroyBullets = 100;  // Ã¿Ö¡Ïú»Ù 100 ×Óµ¯
-    int destroyEnemies = 10;   // Ã¿Ö¡Ïú»Ù 10 µÐÈË
+    int frames = 100;          // Ä£   100 Ö¡
+    int spawnBullets = 100;    // Ã¿Ö¡     100  Óµ 
+    int spawnEnemies = 10;     // Ã¿Ö¡     10     
+    int destroyBullets = 100;  // Ã¿Ö¡     100  Óµ 
+    int destroyEnemies = 10;   // Ã¿Ö¡     10     
 };
 
 
-// Normal: new/delete ÓÅ»¯Ç°
+// Normal: new/delete  Å» Ç°
 static void benchmarkNormal(const SimConfig& cfg) {
     std::size_t memBefore = getPeakWorkingSetBytes();
     auto start = std::chrono::high_resolution_clock::now();
@@ -123,7 +123,7 @@ static void benchmarkNormal(const SimConfig& cfg) {
     enemies.reserve(static_cast<size_t>(cfg.frames) * cfg.spawnEnemies);
 
     for (int f = 0; f < cfg.frames; ++f) {
-        // Éú³É
+        //     
         for (int i = 0; i < cfg.spawnBullets; ++i) {
             Bullet* b = new Bullet();
             b->update();
@@ -137,7 +137,7 @@ static void benchmarkNormal(const SimConfig& cfg) {
             enemies.push_back(e);
         }
 
-        // Ïú»Ù
+        //     
         for (int i = 0; i < cfg.destroyBullets && !bullets.empty(); ++i) {
             delete bullets.back();
             bullets.pop_back();
@@ -148,7 +148,7 @@ static void benchmarkNormal(const SimConfig& cfg) {
         }
     }
 
-    // ÇåÀíÊ£Óà
+    //     Ê£  
     for (auto* b : bullets) delete b;
     for (auto* e : enemies) delete e;
 
@@ -162,10 +162,10 @@ static void benchmarkNormal(const SimConfig& cfg) {
 }
 
 
-// Pool: Á½¸ö³Ø
+// Pool:       
 static void benchmarkPool(const SimConfig& cfg) {
-    // ¹ÀËã¡°·åÖµÔÚ³¡ÊýÁ¿¡±ÓÃÓÚ³ØÈÝÁ¿
-    // spawn==destroy£¬Ã¿Ö¡²»»áÀÛ»ý£¬ÄÇÃ´ÈÝÁ¿¿ÉÒÔµÈÓÚÃ¿Ö¡×î´ó²¢·¢ÊýÁ¿
+    //    ã¡°  Öµ Ú³          Ú³     
+    // spawn==destroy  Ã¿Ö¡     Û»     Ã´       Ôµ   Ã¿Ö¡  ó²¢·     
     const std::size_t bulletCap = static_cast<std::size_t>(cfg.frames) * cfg.spawnBullets;
     const std::size_t enemyCap = static_cast<std::size_t>(cfg.frames) * cfg.spawnEnemies;
 
@@ -181,10 +181,10 @@ static void benchmarkPool(const SimConfig& cfg) {
     enemies.reserve(enemyCap);
 
     for (int f = 0; f < cfg.frames; ++f) {
-        // Éú³É
+        //     
         for (int i = 0; i < cfg.spawnBullets; ++i) {
             Bullet* b = bulletPool.allocate();
-            if (!b) break; // ÈÝÁ¿²»×ã±£»¤
+            if (!b) break; //        ã±£  
             b->update();
             g_sink ^= b->damage;
             bullets.push_back(b);
@@ -197,7 +197,7 @@ static void benchmarkPool(const SimConfig& cfg) {
             enemies.push_back(e);
         }
 
-        // Ïú»Ù
+        //     
         for (int i = 0; i < cfg.destroyBullets && !bullets.empty(); ++i) {
             bulletPool.deallocate(bullets.back());
             bullets.pop_back();
@@ -208,7 +208,7 @@ static void benchmarkPool(const SimConfig& cfg) {
         }
     }
 
-    // ÇåÀíÊ£Óà
+    //     Ê£  
     for (auto* b : bullets) bulletPool.deallocate(b);
     for (auto* e : enemies) enemyPool.deallocate(e);
 
@@ -231,13 +231,13 @@ int main() {
     cfg.destroyBullets = 100;
     cfg.destroyEnemies = 10;
 
-    // ÈÈÉí
+    //     
     benchmarkNormal(cfg);
     benchmarkPool(cfg);
 
     std::cout << "---- repeat ----\n";
     benchmarkNormal(cfg);
     benchmarkPool(cfg);
-
+	system("pause");
     return 0;
 }
