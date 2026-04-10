@@ -94,6 +94,7 @@ static std::size_t getPeakWorkingSetBytes() {
 }
 
 
+
 // 两类游戏对象：用于模拟频繁创建/销毁场景。
 struct Bullet {
     float x, y;   // 位置
@@ -119,6 +120,7 @@ struct Enemy {
     void hit(float d) { hp -= d; }
 };
 
+<<<<<<< HEAD
 // 防止编译器优化掉
 volatile int g_sink = 0;
 
@@ -136,6 +138,8 @@ struct SimConfig {
 
 // 基准1：直接使用 new/delete。
 // 用途：作为对象池方案的对照组，观察时间与内存峰值。
+=======
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
 static void benchmarkNormal(const SimConfig& cfg) {
     // 记录计时与峰值内存（注意峰值是“到当前时刻为止”的历史最大值）。
     std::size_t memBefore = getPeakWorkingSetBytes();
@@ -148,7 +152,11 @@ static void benchmarkNormal(const SimConfig& cfg) {
     enemies.reserve(static_cast<size_t>(cfg.frames) * cfg.spawnEnemies);
 
     for (int f = 0; f < cfg.frames; ++f) {
+<<<<<<< HEAD
         // 生成
+=======
+
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
         for (int i = 0; i < cfg.spawnBullets; ++i) {
             Bullet* b = new Bullet();
             b->update();
@@ -162,7 +170,11 @@ static void benchmarkNormal(const SimConfig& cfg) {
             enemies.push_back(e);
         }
 
+<<<<<<< HEAD
         // 销毁：按 LIFO 回收，模拟对象生命周期结束。
+=======
+
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
         for (int i = 0; i < cfg.destroyBullets && !bullets.empty(); ++i) {
             delete bullets.back();
             bullets.pop_back();
@@ -173,7 +185,11 @@ static void benchmarkNormal(const SimConfig& cfg) {
         }
     }
 
+<<<<<<< HEAD
     // 清理剩余
+=======
+
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
     for (auto* b : bullets) delete b;
     for (auto* e : enemies) delete e;
 
@@ -187,10 +203,13 @@ static void benchmarkNormal(const SimConfig& cfg) {
 }
 
 
+<<<<<<< HEAD
 // 基准2：使用对象池（子弹池 + 敌人池）。
 // 用途：减少频繁堆分配/释放带来的开销与碎片化风险。
 static void benchmarkPool(const SimConfig& cfg) {
     // 这里取“总生成量”作为容量上限，简单但偏保守，保证不会因容量不足影响结果。
+=======
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
     const std::size_t bulletCap = static_cast<std::size_t>(cfg.frames) * cfg.spawnBullets;
     const std::size_t enemyCap = static_cast<std::size_t>(cfg.frames) * cfg.spawnEnemies;
 
@@ -207,10 +226,14 @@ static void benchmarkPool(const SimConfig& cfg) {
     enemies.reserve(enemyCap);
 
     for (int f = 0; f < cfg.frames; ++f) {
+<<<<<<< HEAD
         // 生成
         for (int i = 0; i < cfg.spawnBullets; ++i) {
             Bullet* b = bulletPool.allocate();
             if (!b) break; // 容量不足保护
+=======
+
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
             b->update();
             g_sink ^= b->damage;
             bullets.push_back(b);
@@ -223,7 +246,11 @@ static void benchmarkPool(const SimConfig& cfg) {
             enemies.push_back(e);
         }
 
+<<<<<<< HEAD
         // 销毁：对象回池，不触发系统级 free。
+=======
+
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
         for (int i = 0; i < cfg.destroyBullets && !bullets.empty(); ++i) {
             bulletPool.deallocate(bullets.back());
             bullets.pop_back();
@@ -234,7 +261,11 @@ static void benchmarkPool(const SimConfig& cfg) {
         }
     }
 
+<<<<<<< HEAD
     // 清理剩余
+=======
+
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
     for (auto* b : bullets) bulletPool.deallocate(b);
     for (auto* e : enemies) enemyPool.deallocate(e);
 
@@ -258,7 +289,11 @@ int main() {
     cfg.destroyBullets = 100;
     cfg.destroyEnemies = 10;
 
+<<<<<<< HEAD
     // 热身：先跑一轮，减少首次运行带来的缓存/分配器冷启动干扰。
+=======
+
+>>>>>>> f390276d51b5e7552d40e8367ac77d6124d6a5dc
     benchmarkNormal(cfg);
     benchmarkPool(cfg);
 
@@ -267,6 +302,6 @@ int main() {
     std::cout << "---- repeat111 ----\n";
     benchmarkNormal(cfg);
     benchmarkPool(cfg);
-
+	system("pause");
     return 0;
 }
