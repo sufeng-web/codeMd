@@ -1,6 +1,12 @@
 #include <iostream>
 #include <memory>
 
+/* 
+抽像产品
+*KxButton---------KxModernButton    KxStandardButton 
+*KxTextEdit-------KxBasicTextEdit   KxMaterialTextEdit
+*KxCheckBox-------KxBasicCheckBox   KxModernCheckBox
+*/
 // 抽象产品：按钮
 class KxButton
 {
@@ -164,6 +170,7 @@ int main()
     // 现代风格复选框测试
     auto modernCheckBox = UiSimpleFactory::createCheckBox(KxStyleType::ModernStyleType);
     modernCheckBox->render();
+
     system("pause");
     return 0;
 }
