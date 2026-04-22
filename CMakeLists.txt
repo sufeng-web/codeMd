@@ -12,5 +12,5 @@ set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin") # 设置输出目录为顶
 
 add_subdirectory(Example)
 add_subdirectory(LessonCode)
-
+add_subdirectory(ClassExamProject)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT QtDemo)  #设置启动项

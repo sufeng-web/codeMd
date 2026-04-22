@@ -79,7 +79,8 @@ GameController::GameController(GameData* model, GameView* view)
     });
 }
 
-void GameController::startGame() {
+void GameController::startGame() 
+{
     model->resetScore();
     model->resetMissed();
     model->setMaxMisses(GameConfig::getInstance().getInitialLives());
